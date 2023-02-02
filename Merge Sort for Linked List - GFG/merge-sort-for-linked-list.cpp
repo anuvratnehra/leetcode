@@ -58,8 +58,8 @@ class Solution{
             temp->data=secondarr[j++];
             temp=temp->next;
         }
-        //vector<int>().swap(firstarr);
-        //vector<int>().swap(secondarr);
+        vector<int>().swap(firstarr);
+        vector<int>().swap(secondarr);
         return;
     }
     void mergingSort(Node* first, Node* last){
