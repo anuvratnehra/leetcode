@@ -9,19 +9,20 @@ class Solution
     public:
     int knapSack(int w, int wt[], int val[], int n) 
     {
-        vector<vector<int>>dp(n,vector<int>(w+1,0));
+        vector<int>dp(w+1,0);
+        //vector<vector<int>>dp(n,vector<int>(w+1,0));
         for(int i=wt[0];i<=w;i++){
-            dp[0][i]=val[0];
+            dp[i]=val[0];
         }
         for(int i=1;i<n;i++){
-            for(int weight=0;weight<=w;weight++){
+            for(int weight=w;weight>=0;weight--){
                 int take=INT_MIN;
-                if(wt[i]<=weight) take=val[i]+dp[i-1][weight-wt[i]];
-                int notTake=dp[i-1][weight];
-                dp[i][weight]=max(take,notTake);
+                if(wt[i]<=weight) take=val[i]+dp[weight-wt[i]];
+                int notTake=dp[weight];
+                dp[weight]=max(take,notTake);
             }
         }
-        return dp[n-1][w];
+        return dp[w];
     }
 };
 
